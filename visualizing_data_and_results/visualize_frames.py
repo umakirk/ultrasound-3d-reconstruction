@@ -1,10 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-from filter_segmentations import filter_small_segments
+from pydicom import dcmread
 
-# Load frames to visualize
-array = np.load(r"multipass_givens\multipass_phantom(2375, 649, 850).npy")[1183:1382]
+dicom = dcmread(r"dicoms\shadow dicoms\starting_US_test_c")
+array = dicom.pixel_array
+
 
 # Verify dimensions
 num_frames = array.shape[0]
