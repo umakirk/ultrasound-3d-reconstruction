@@ -33,15 +33,12 @@ blur_detect = True
 ray_detections = ["dark", "medium", "PAE"]
 
 
-
 ###################################################################################################################
 
 ##### USER INPUTS #####
 
 # 1) Define a name for this mesh (pass number, type of artifact added if any)
-# DON'T specify if detection is being run, will automatically be added to the name later
-#name = "pass5_motionblur50_100"
-#name = "pass3,4,5,6_overlapfiltered"
+# DON'T specify if artifact detection is being run, will automatically be added to the name later
 
 name = "poster_artifact_added_pass5"
 
@@ -54,46 +51,23 @@ pass4_indices = np.arange(929,1114)
 pass5_indices = np.arange(1183, 1383)
 pass6_indices = np.arange(1445,1640)
 
-
 #indices = np.concatenate((pass1_indices, pass2_indices))
-
 #indices = np.concatenate((pass3_indices, pass4_indices, pass5_indices, pass6_indices))
-
 indices = pass5_indices
-
-# (Slicing the multipass 2375 frames scan to get frames at those specific indices)
-#unartifact_frames = np.load("multipass_givens/multipass_phantom(2375, 649, 850).npy")[indices]
 
 # 3) Optional: Add artifacts using add_artifacts.py helper funcs #####
 #frames = motion_blur_frames(frames, range(50, 100), kernel_size=100, direction='horizontal')
-
-# frames = add_fuzzy_shadow(
-#     scan_array=unartifact_frames,
-#     rect_size=(250, 175),      # height=60, width=40
-#     top_mid=(150, 425),       # top edge midpoint at row=80, col=128
-#     frame_range=(unartifact_frames.shape[0]//3, 2*unartifact_frames.shape[0]//3),
-#     fuzz_sigma=8
-# )
-
-
-### OR LOAD FRAMES DIRECTLY HERE
-
-#frames = np.load(r"artifact_added_arrays/pass1and2_shadowed_frames.npy")
-
-#frames = np.load(r"artifact_added_arrays/pass3,4_shadowed_frames.npy")
-#frames = np.load(r"artifact_added_arrays/pass3,4,5_shadowed_frames.npy")
-
-#frames = unartifact_frames
-
-frames = np.load("poster_artifact_added_pass5_frames.npy")
-
 
 # Save artifact-added numpy array in folder artifact_added_arrays
 #np.save(f"artifact_added_arrays/{name}_frames.npy", frames)
 #print("Saved artifact-added frames to numpy array.")
 
 
-# 5) Toggle artifact detection on or off
+### OR INSTEAD OF STEPS 2 AND 3, JUST LOAD FRAMES DIRECTLY HERE:
+#frames = np.load(r"artifact_added_arrays/pass1and2_shadowed_frames.npy")
+
+
+# 4) Toggle artifact detection on or off
 artifact_detection = False
 if artifact_detection:
     name = "detected_" + name
@@ -214,7 +188,7 @@ except subprocess.CalledProcessError as e:
     print(e.stderr)
 
 
-### NOW MANUALLY LOG INTO SSH AND SUBMIT sbatch predict.sh
+### NOW MANUALLY LOG INTO SSH AND SUBMIT THIS: sbatch predict.sh
 
 ### WAIT FOR SBATCH TO FINISH RUNNING BEFORE TRYING TO DOWNLOAD
 input("Manually submit predict.sh script. Press Enter to download predictions after the job is done...")
@@ -238,8 +212,7 @@ except subprocess.CalledProcessError as e:
     print(e.stderr)
 
 
-# Run nifti_predictions_to_array.py
-
+# Run nifti_segmentations_to_array.py
 nifti_segmentations_to_array(name)
 print("Inference prediction nifti files saved as 3D array on local computer.")
 
