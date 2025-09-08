@@ -1,0 +1,12 @@
+{
+    "channel_names": {
+        "0": "US"
+    },
+    "labels": {
+        "background": 0,
+        "kidney": 1
+    },
+    "numTraining": 59,
+    "file_ending": ".nii.gz",
+    "overwrite_image_reader_writer": "SimpleITKIO"
+}
