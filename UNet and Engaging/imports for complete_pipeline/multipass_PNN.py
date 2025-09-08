@@ -340,15 +340,8 @@ if __name__ == "__main__":
     pass5_indices = np.arange(1183, 1383)
     pass_6_indices = np.arange(1445,1640)
     
-    # Pass 4
-    #indices = np.arange(929, 1113)
-
     # Pass 5
     indices = np.arange(1183, 1382)
-
-    # Pass 4&5
-    #indices = np.concatenate((np.arange(929, 1114), np.arange(1183, 1383)))
-
 
     dicom_array = np.load(r"artifact_added_arrays\pass5_motionblur60_130_frames.npy")
     print(f"Number of frames: {dicom_array.shape[0]}")
@@ -357,16 +350,10 @@ if __name__ == "__main__":
     segmentation_masks = filter_small_segments(segmentation_masks, min_area=10000)
     poses = np.load(r"multipass_givens\multipass_poses_centered(3, 4, 2375).npy")[:, :, indices]
 
- 
-
     masked_dicom_array = np.where(segmentation_masks !=0 , dicom_array, 0)
     voxel_grid, origin, elapsed_time, point_cloud, frame_counts_grid = PNN_reconstruct(masked_dicom_array, poses, 0.001, multiple_inputs='average')
 
     np.save(r"voxel_grid_reconstructions/pass5_motionblur60_130_reconstruction", voxel_grid)
-
-
-
-
 
     print("Voxel grid shape:", voxel_grid.shape)
     print("Origin/min_coords:", origin)
