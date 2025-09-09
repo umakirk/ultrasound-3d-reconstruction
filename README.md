@@ -34,4 +34,4 @@ The remaining folders contain the more advanced and directly useful scripts:
 **Visualize Data and Results:**
 - visualize_frames.py: Frame-by-frame viewer with slider control.
 - visualize_2Dcross-sections_and_3Dgrid.py: Interactive voxel grid explorer (2D cross-sections + 3D rendering).
-- compare_two_surface_meshes.py: Aligns and compares two meshes using ICP; provides overlays, error heatmaps, volumes, and distance metrics (Chamfer/Hausdorff).
+- compare_two_surface_meshes.py: Aligns and compares two meshes using ICP; provides overlays, error heatmaps, volumes, and distance metrics (Chamfer, Hausdorff).
