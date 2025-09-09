@@ -215,22 +215,9 @@ def visualize(dicom_array, noncontact_flags, corner_points):
 if __name__ == "__main__":
     from pydicom import dcmread
     from unified_check_helper_funcs.load_dicom import get_dicom_array
-    #dicom_array = np.load("start noncon dicom arrays/P7FCPK82(418, 649, 850).npy")
-
-    #dicom_array = np.load("varying depth dicom arrays\P7GAF780(619, 649, 850).npy")
-
-    #dicom_array = np.load("varying depth w noncontact dicom arrays\P7HBP6G2(742, 649, 850).npy")
-    #dicom_array = np.load("varying depth w noncontact dicom arrays\P7HBP6G4(742, 649, 850).npy")
-
+    
     dicom = dcmread("linear probe dicoms/P7HC7OO6")
     dicom_array = get_dicom_array(dicom)
-    # noncontact_flags, corner_points = detect_noncontact_realtime(
-    #     dicom_array,
-    #     threshold_factor=0.75,
-    #     top_percent=2,
-    #     min_valid_ratio=0.3,
-    #     width_change_thresh=10  # Adjust as needed
-    # )
 
     noncontact_flags, corner_points = detect_noncontact_realtime(
         dicom_array,
