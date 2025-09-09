@@ -2,22 +2,22 @@ import numpy as np
 import os
 import nibabel as nib
 
-# ---- Load arrays ----
+# Load arrays 
 array = np.load(r"multipass_phantom\multipass_phantom(2375, 649, 850).npy")[400:575]  # shape (175, H, W)
 seg_array = np.load(r"multipass_phantom\multipass_segmentations(2375, 649, 850).npy")[400:575]
 
-# ---- Sample every 3rd frame ----
+# Sample every 3rd frame 
 sampled_indices = np.arange(0, 175, 3)  # 59 frames
 sampled_imgs = array[sampled_indices]
 sampled_segs = seg_array[sampled_indices]
 
-# ---- Output folders ----
+# Output folders 
 images_out_dir = r"C:\Users\umakirk\nnUNet_raw\Dataset100_KidneyUS\imagesTr"
 labels_out_dir = r"C:\Users\umakirk\nnUNet_raw\Dataset100_KidneyUS\labelsTr"
 os.makedirs(images_out_dir, exist_ok=True)
 os.makedirs(labels_out_dir, exist_ok=True)
 
-# ---- Save each frame ----
+# Save each frame
 for i, (img, seg) in enumerate(zip(sampled_imgs, sampled_segs)):
     # Normalize image and convert to float32
     img = img.astype(np.float32)
