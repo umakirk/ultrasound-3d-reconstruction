@@ -21,7 +21,7 @@ The remaining folders contain the more advanced and directly useful scripts:
 **UNet and Engaging:**
 - complete_pipeline.py: End-to-end pipeline:
     - Load frames (optionally add synthetic artifacts)
-    - (Optional) Artifact detection → filter flagged frames
+    - (Optional) Artifact detection, filtering flagged frames
     - UNet segmentation (via MIT Engaging GPU cluster: upload data, generate & run predict.sh, download results)
     - PNN reconstruction with UNet segmentations
     - Mesh generation from voxel grid (including volume calculation)
