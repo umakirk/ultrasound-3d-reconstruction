@@ -1,10 +1,10 @@
 ## UROP_Summer_2025
 
-This repository provides Python code for 3D organ reconstruction from 2D ultrasound scans (DICOM format). The work integrates artifact detection, segmentation, pass-based filtering, and voxel-to-mesh reconstruction.
+This repository provides Python code for 3D organ reconstruction from 2D ultrasound scans (DICOM format), integrating artifact detection, segmentation, pass-based filtering, and voxel-to-mesh reconstruction.
 
 The scripts in Mini Project 1 (image handling basics), Mini Project 2 (thresholding segmentation), and Mini Project 3 (simple 3D reconstruction) were practice exercises for foundational methods. They are included for completeness but are not central to the main pipeline.
 
-The remaining folders contain more advanced and directly useful scripts:
+The remaining folders contain the more advanced and directly useful scripts:
 
 **Artifact Detection:**
 - unified_check.py: Runs detection for noncontact, blur, shadow, and posterior acoustic enhancement (parameters adjustable per scan).
