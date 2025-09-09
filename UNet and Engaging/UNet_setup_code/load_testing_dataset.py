@@ -7,11 +7,11 @@ from unified_check_helper_funcs.metadata_removal import remove_metadata, templat
 
 def load_inference_data(frames_array, name):
 
-    # ---- Clean frames ----
+    # Clean frames
     array = [remove_metadata(frames_array[frame_num], template) for frame_num in range(frames_array.shape[0])]
     print(f"num frames after metadataremova: {len(array)}")
 
-    # ---- Output folders ----
+    # Output folders
     images_out_dir = f"inference_data/{name}"
 
     # Clear existing folder if it exists
@@ -20,7 +20,7 @@ def load_inference_data(frames_array, name):
     os.makedirs(images_out_dir)
 
 
-    # ---- Save each frame ----
+    # Save each frame
     for i, img in enumerate(array):
         # Normalize image and convert to float32
         img = img.astype(np.float32)
