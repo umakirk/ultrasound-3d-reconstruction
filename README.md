@@ -1,4 +1,4 @@
-## ultrasound-3drecon
+## ultrasound-3d-reconstruction
 
 This repository provides Python code for 3D organ reconstruction from 2D ultrasound scans (DICOM format), integrating artifact detection, segmentation, pass-based filtering, and voxel-to-mesh reconstruction.
 
